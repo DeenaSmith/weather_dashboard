@@ -1,7 +1,11 @@
 
 var weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=42c34ed261d0d482947917bfe075d9a3';
 var searchBtn = document.getElementById('search-button');
-var currentWeather = document.getElementById('current-weather');
+var currentCity = document.getElementById('current-city');
+var currentDate = document.getElementById('current-date');
+var currentTemp = document.getElementById('current-temp');
+var currentHum = document.getElementById('current-hum');
+var currentWind= document.getElementById('current-wind');
 
 
 
@@ -17,13 +21,18 @@ searchBtn.addEventListener('click', function () {
             console.log(error)
         }
     }
-console.log(getWeather)
+
         getWeather();
 
     // Display weather in HTML
-    function displayWeather() {
-        currentWeather.innerHTML = weatherUrl.data;
-        console.log('inputParam')
+    function displayWeather(inputParam) {
+        currentCity.innerHTML = inputParam.city.name;
+        currentDate.innerHTML = inputParam.list[0].dt_txt;
+        currentTemp.innerHTML = inputParam.list[0].main.temp;
+        currentHum.innerHTML = inputParam
+        currentWind.innerHTML = inputParam.list[0].wind.speed;
+
+        console.log(inputParam)
 
         
 
