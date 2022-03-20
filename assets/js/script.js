@@ -13,7 +13,7 @@ searchBtn.addEventListener('click', function (event) {
     let splitInput = userInput.split(" ")
     let urlUserInput = splitInput.join('+')
 
-    var weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast?q='+urlUserInput+'&appid=42c34ed261d0d482947917bfe075d9a3';
+    var weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast?q='+urlUserInput+'&units=imperial&appid=42c34ed261d0d482947917bfe075d9a3';
 
 
     const getWeather = async () => {
@@ -38,10 +38,37 @@ searchBtn.addEventListener('click', function (event) {
         currentWind.innerHTML = inputParam.list[0].wind.speed;
         currentUV.innerHTML = inputParam
 
+     
+
         console.log(inputParam)
 
         for (let i = 0; i < 5; i++) {
             console.log(inputParam.list[i]);
+            let date = inputParam.list[i].dt_txt
+            let formatedDate = moment.unix(date).format("MMM Do");
+            let temp = inputParam.list[i].main.temp
+            let wind = inputParam.list[i].wind.speed
+            let humidity = inputParam.list[i].main.humidity
+            let cloudy = inputParam.list[i].clouds.all
+           let cardHtml = `<div class="card col-2">
+                                <div class="card-body">
+                                    <h6>`+date+`</h6>
+                                    <h6>`+cloudy+`% cloudy</h6>
+                                    <img
+                                    src="http://openweathermap.org/img/wn/${
+                                      inputParam.list[i].weather[0].icon
+                                    }@4x.png"
+                                    class="card-img-top"
+                                   
+                                  />
+                                    <h6>Temp  `+temp+`</h6>
+                                    <h6>Wind `+wind+`</h6>
+                                    <h6>Humidity `+humidity+`</h6>
+                                </div>
+                            </div>`
+                // $('#weather-cards').empty()
+                $('#weather-cards').append(cardHtml)
+
         }
 
     
