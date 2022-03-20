@@ -29,6 +29,12 @@ searchBtn.addEventListener('click', function (event) {
 
         getWeather();
 
+        window.localStorage.setItem(userInput, urlUserInput)
+        localStorage.getItem(userInput);
+        let createBtn = `<button type="submit" value=`+urlUserInput+` class="btn-secondary btn btn-block w-100 mt-2 searchHistory">`+userInput+`</button>`
+        $('#city-buttons').append(createBtn)
+
+
     // Display weather in HTML
     function displayWeather(inputParam) {
         currentCity.innerHTML = inputParam.city.name;
@@ -59,7 +65,6 @@ searchBtn.addEventListener('click', function (event) {
                                       inputParam.list[i].weather[0].icon
                                     }@4x.png"
                                     class="card-img-top"
-                                   
                                   />
                                     <h6>Temp  `+temp+`</h6>
                                     <h6>Wind `+wind+`</h6>
@@ -70,6 +75,9 @@ searchBtn.addEventListener('click', function (event) {
                 $('#weather-cards').append(cardHtml)
 
         }
+
+
+
 
     
     }
